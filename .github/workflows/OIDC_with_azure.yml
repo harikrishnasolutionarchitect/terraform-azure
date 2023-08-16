@@ -25,4 +25,4 @@ jobs:
           az account list-locations -o table
           az group create -l eastus -n lmsapprg
           az storage account create -n lmsappsa -g lmsapprg -l eastus --sku Standard_LRS
-          az storage container create -n lmsapcontainer
+          az storage container create -n lmsapcontainer --account-name lmsappsa
