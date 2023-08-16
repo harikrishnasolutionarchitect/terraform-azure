@@ -14,12 +14,20 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}          
-      - name: 'Run az cli commands to create all resources'
+      - name: 'Get Azure Account Information '
         run: |
           az account show
-          az account list --all
+          az account list --all -o table
           az group list -o table
           az account list-locations -o table
+      - name: 'Create Resoruce Group for LMS Applications'
+        run: |
+          echo "INFO  - Creating Resource group for LMS Applications"
+          echo ""
           az group create -l eastus -n lmsapprg
+          echo "INFO  - Creating Storage Account for LMS Applications"
+          echo ""
           az storage account create -n lmsappsa -g lmsapprg -l eastus --sku Standard_LRS
+          echo "INFO  - Creating Blob Container"
+          echo ""
           az storage container create -n lmsapcontainer --account-name lmsappsa
