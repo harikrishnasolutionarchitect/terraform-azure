@@ -21,3 +21,4 @@ jobs:
         run: |
           az account show
           az group list
+          az account accept-ownership-status --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }}
