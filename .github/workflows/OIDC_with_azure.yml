@@ -54,5 +54,5 @@ jobs:
       #   az extension add --name ssh
       - name: 'Creating hal-logi-dev Linux Servers'
         run: |
-         az vm create --resource-group lmsapprg --admin-username mware --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address ""
-         az vm create --resource-group lmsapprg --admin-username mware --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address ""
+         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address ""
+         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address ""
