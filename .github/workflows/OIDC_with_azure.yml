@@ -43,12 +43,11 @@ jobs:
         run: | 
          az network vnet create --name lms-vnet-01 --resource-group lmsapprg --address-prefix 10.0.0.0/16 --subnet-name subnet-01 --subnet-prefixes 10.0.0.0/24 -l eastus
          az network vnet subnet create --name AzureBastionSubnet --resource-group lmsapprg  --vnet-name lms-vnet-01 --address-prefix 10.0.1.0/26 
-      - name: 'Creating PublicIP for LMS APPlication'
-        run: |
-         az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3
-         az extension add --name ssh
-         az network bastion create --name bastion-host --public-ip-address lmsapp-publicIP --resource-group lmsapprg --vnet-name lms-vnet-01 --location eastus
-         az extension add --name ssh
+      #- name: 'Creating PublicIP for LMS APPlication'
+      #  run: |
+      #   az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3
+      #   az network bastion create --name bastion-host --public-ip-address lmsapp-publicIP --resource-group lmsapprg --vnet-name lms-vnet-01 --location eastus
+      #   az extension add --name ssh
       - name: 'Creating hal-logi-dev Linux Servers'
         run: |
          az vm create --resource-group lmsapprg --admin-username mware --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address ""
