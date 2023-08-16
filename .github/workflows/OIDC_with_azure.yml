@@ -6,6 +6,7 @@ on:
     tags:
        - v0.1.0
        - v0.2.0
+       - v0.3.0
 
 permissions:
       id-token: write
@@ -27,7 +28,7 @@ jobs:
           az account list --all -o table
           az group list -o table
           az account list-locations -o table
-      - name: 'Create Resoruce Group for LMS Applications ..! '
+      - name: 'Create Resoruce Group for LMS Applications ....! '
         run: |
           echo "INFO  - Creating Resource group for LMS Applications"
           echo ""
