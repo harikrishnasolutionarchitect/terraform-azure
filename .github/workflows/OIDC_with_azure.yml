@@ -20,5 +20,5 @@ jobs:
       - name: 'Run az commands'
         run: |
           az account show
+          az account list --all
           az group list
-          az account accept-ownership-status --subscription-id ${{ secrets.AZURE_SUBSCRIPTION_ID }}
