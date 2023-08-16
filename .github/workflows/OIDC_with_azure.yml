@@ -42,5 +42,5 @@ jobs:
       - name: 'Creating VNet with Subnets'
         run: | 
          az network vnet create --name lms-vnet-01 --resource-group lmsapprg --address-prefix 10.0.0.0/16 --subnet-name subnet-01 --subnet-prefixes 10.0.0.0/24 -l eastus
-         az network vnet subnet create --name AzureBastionSubnet --resource-group lmsapprg  --vnet-name lms-vnet-01 --address-prefix 10.0.1.0/26 -l eastus 
+         az network vnet subnet create --name AzureBastionSubnet --resource-group lmsapprg  --vnet-name lms-vnet-01 --address-prefix 10.0.1.0/26 --location eastus 
             
