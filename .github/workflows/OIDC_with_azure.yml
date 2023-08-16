@@ -59,6 +59,9 @@ jobs:
          az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d10"
          az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3 --version IPv4 --dns-name lmsapp --allocation-method Static
          az network public-ip create --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard --location eastus --zone 1 2 3 --version IPv4 --dns-name lmsapp --allocation-method Static
+         az network public-ip update --resource-group lmsapprg --name lmsapp-publicIP --sku Standard
+         az network public-ip update --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard
+
       - name: 'Adding Data Disk on Both VMS'
         run: |
          az vm disk attach -g lmsapprg --vm-name hal-logia-d09 --name hal-logia-d09-Data_Disk01 --new --size-gb 50 --sku Standard_LRS
