@@ -22,7 +22,6 @@ jobs:
       - name: 'Get Azure Account Information '
         run: |
           az cloud set -n azurecloud
-          az login
           az account show
           az account list --all -o table
           az group list -o table
