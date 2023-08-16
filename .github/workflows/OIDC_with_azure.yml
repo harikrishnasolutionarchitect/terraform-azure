@@ -5,7 +5,7 @@ permissions:
       id-token: write
       contents: read
 jobs:
-  build-and-deploy:
+  Azure-Cli-Build-and-Deploy-Resources:
     runs-on: ubuntu-latest
     steps:
       - name: 'Az CLI login'
@@ -13,15 +13,12 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-          
-          
-      - name: 'Run az commands'
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}          
+      - name: 'Run az cli commands to create all resources'
         run: |
           az account show
           az account list --all
-          az group list
+          az group list -o table
           az account list-locations -o table
           az group create -l eastus -n lmsapprg
           az storage account create -n lmsappsa -g lmsapprg -l eastus --sku Standard_LRS
