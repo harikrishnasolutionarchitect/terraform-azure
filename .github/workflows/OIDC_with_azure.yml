@@ -28,9 +28,9 @@ jobs:
           az account list --all -o table
           az group list -o table
           az account list-locations -o table
-      - name: "Force delete lmsapprg"
-        run: |
-          az group delete -n lmsapprg --force-deletion-types Microsoft.Compute/virtualMachines --no-wait --yes
+      #- name: "Force delete lmsapprg"
+      #  run: |
+      #    az group delete -n lmsapprg --force-deletion-types Microsoft.Compute/virtualMachines --no-wait --yes
 
       - name: 'Create Resoruce Group for LMS Applications .....! '
         run: |
