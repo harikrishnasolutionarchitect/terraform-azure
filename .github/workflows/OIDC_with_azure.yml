@@ -55,5 +55,6 @@ jobs:
       - name: 'Creating hal-logi-dev Linux Servers'
         run: |
          az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address "lmsapp-publicIP"
-         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "lmsapp-publicIP"
+         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d10"
          az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3 --version IPv4
+         az network public-ip create --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard --location eastus --zone 1 2 3 --version IPv4
