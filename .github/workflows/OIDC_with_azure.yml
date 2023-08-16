@@ -5,6 +5,7 @@ on:
       - master
     tags:
        - v0.1.0
+       - v0.2.0
 
 permissions:
       id-token: write
