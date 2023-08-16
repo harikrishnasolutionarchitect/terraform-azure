@@ -32,7 +32,7 @@ jobs:
         run: |
           az group delete -n lmsapprg --force-deletion-types Microsoft.Compute/virtualMachines --no-wait --yes
 
-      - name: 'Create Resoruce Group for LMS Applications ....! '
+      - name: 'Create Resoruce Group for LMS Applications .....! '
         run: |
           echo "INFO  - Creating Resource group for LMS Applications"
           echo ""
@@ -56,6 +56,3 @@ jobs:
         run: |
          az vm create --resource-group lmsapprg --admin-username mware --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address ""
          az vm create --resource-group lmsapprg --admin-username mware --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address ""
-
-        
-        
