@@ -22,4 +22,4 @@ jobs:
           az account show
           az account list --all
           az group list
-          az account list-locations
+          az account list-locations -o table
