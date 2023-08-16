@@ -55,8 +55,8 @@ jobs:
       #   az extension add --name ssh
       - name: 'Creating hal-logi-dev Linux Servers'
         run: |
-         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d09" --zone 2
-         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d10" --zone 2
+         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d09" --zone 3
+         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d10" --zone 3
          az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3 --version IPv4 --dns-name lmsapp-hal-logia-d09 --allocation-method Static
          az network public-ip create --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard --location eastus --zone 1 2 3 --version IPv4 --dns-name lmsapp-hal-logia-d10 --allocation-method Static
          az network public-ip update --resource-group lmsapprg --name lmsapp-publicIP --sku Standard
