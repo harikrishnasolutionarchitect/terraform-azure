@@ -44,23 +44,26 @@ jobs:
           echo "INFO  - Creating Blob Container"
           echo ""
           az storage container create -n lmsapcontainer --account-name lmsappsa
-      - name: 'Creating VNet with Subnets.'
-        run: | 
-         az network vnet create --name lms-vnet-01 --resource-group lmsapprg --address-prefix 10.0.0.0/16 --subnet-name subnet-01 --subnet-prefixes 10.0.0.0/24 -l eastus
-         az network vnet subnet create --name AzureBastionSubnet --resource-group lmsapprg  --vnet-name lms-vnet-01 --address-prefix 10.0.1.0/26 
-      #- name: 'Creating PublicIP for LMS APPlication'
-      #  run: |
-      #   az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3
-      #   az network bastion create --name bastion-host --public-ip-address lmsapp-publicIP --resource-group lmsapprg --vnet-name lms-vnet-01 --location eastus
-      #   az extension add --name ssh
-      - name: 'Creating hal-logi-dev Linux Servers'
+      - name: 'Creating ACR - Repo'
         run: |
-         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d09" --zone 3
-         az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d10" --zone 3
-         az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 3 --version IPv4 --dns-name lmsapp-hal-logia-d09 --allocation-method Static
-         az network public-ip create --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard --location eastus --zone 3 --version IPv4 --dns-name lmsapp-hal-logia-d10 --allocation-method Static
-         az network public-ip update --resource-group lmsapprg --name lmsapp-publicIP --sku Standard
-         az network public-ip update --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard
+         az acr create -n lmsapprepo -g lmsapp --sku Standard --admin-enabled true
+      # - name: 'Creating VNet with Subnets.'
+      #   run: | 
+      #    az network vnet create --name lms-vnet-01 --resource-group lmsapprg --address-prefix 10.0.0.0/16 --subnet-name subnet-01 --subnet-prefixes 10.0.0.0/24 -l eastus
+      #    az network vnet subnet create --name AzureBastionSubnet --resource-group lmsapprg  --vnet-name lms-vnet-01 --address-prefix 10.0.1.0/26 
+#- name: 'Creating PublicIP for LMS APPlication'
+#  run: |
+#   az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 1 2 3
+#   az network bastion create --name bastion-host --public-ip-address lmsapp-publicIP --resource-group lmsapprg --vnet-name lms-vnet-01 --location eastus
+#   az extension add --name ssh
+      # - name: 'Creating hal-logi-dev Linux Servers'
+      #   run: |
+      #    az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d09 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d09" --zone 3
+      #    az vm create --resource-group lmsapprg --admin-username mware --admin-password M@inH00nP@nd!t --public-ip-sku Standard --authentication-type password --name hal-logia-d10 --image Ubuntu2204 --public-ip-address "PublicIP-hal-logia-d10" --zone 3
+      #    az network public-ip create --resource-group lmsapprg --name lmsapp-publicIP --sku Standard --location eastus --zone 3 --version IPv4 --dns-name lmsapp-hal-logia-d09 --allocation-method Static
+      #    az network public-ip create --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard --location eastus --zone 3 --version IPv4 --dns-name lmsapp-hal-logia-d10 --allocation-method Static
+      #    az network public-ip update --resource-group lmsapprg --name lmsapp-publicIP --sku Standard
+      #    az network public-ip update --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard
 #      - name: 'Disk partition steps'
 #        run: |
 #          mware@hal-logia-d09:/$ lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
@@ -98,7 +101,7 @@ jobs:
 
 #lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 
-      - name: 'Adding Data Disk on Both VMS'
-        run: |
-         az vm disk attach -g lmsapprg --vm-name hal-logia-d09 --name hal-logia-d09-Data_Disk01 --new --size-gb 50 --sku Standard_LRS
-         az vm disk attach -g lmsapprg --vm-name hal-logia-d10 --name hal-logia-d10-Data_Disk01 --new --size-gb 50 --sku Standard_LRS
+      # - name: 'Adding Data Disk on Both VMS'
+      #   run: |
+      #    az vm disk attach -g lmsapprg --vm-name hal-logia-d09 --name hal-logia-d09-Data_Disk01 --new --size-gb 50 --sku Standard_LRS
+      #    az vm disk attach -g lmsapprg --vm-name hal-logia-d10 --name hal-logia-d10-Data_Disk01 --new --size-gb 50 --sku Standard_LRS
