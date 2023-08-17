@@ -46,7 +46,7 @@ jobs:
           az storage container create -n lmsapcontainer --account-name lmsappsa
       - name: 'Creating ACR - Repo'
         run: |
-         az acr create -n lmsapprepo -g lmsapp --sku Standard --admin-enabled true
+         az acr create -n lmsapprepo -g lmsapprg --sku Standard --admin-enabled true
       # - name: 'Creating VNet with Subnets.'
       #   run: | 
       #    az network vnet create --name lms-vnet-01 --resource-group lmsapprg --address-prefix 10.0.0.0/16 --subnet-name subnet-01 --subnet-prefixes 10.0.0.0/24 -l eastus
