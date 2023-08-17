@@ -28,10 +28,10 @@ jobs:
           az account list --all -o table
           az group list -o table
           az account list-locations -o table
-      #- name: "Force delete lmsapprg"
-      #  run: |
-      #    az group delete -n lmsapprg --force-deletion-types Microsoft.Compute/virtualMachines --no-wait --yes
-      #    sleep 5
+      - name: "Force delete lmsapprg"
+        run: |
+          az group delete -n lmsapprg --force-deletion-types Microsoft.Compute/virtualMachines --no-wait --yes
+          sleep 5
 
       - name: 'Create Resoruce Group for LMS Applications .....! '
         run: |
@@ -61,6 +61,42 @@ jobs:
          az network public-ip create --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard --location eastus --zone 3 --version IPv4 --dns-name lmsapp-hal-logia-d10 --allocation-method Static
          az network public-ip update --resource-group lmsapprg --name lmsapp-publicIP --sku Standard
          az network public-ip update --resource-group lmsapprg --name PublicIP-hal-logia-d10 --sku Standard
+#      - name: 'Disk partition steps'
+#        run: |
+#          mware@hal-logia-d09:/$ lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
+#          sda     0:0:0:0       30G
+##          sda1              29.9G /
+#          sda14                4M
+#          sda15              106M /boot/efi
+#          sdb     0:0:0:1        7G
+#          sdb1                 7G /mnt
+#          sdc     1:0:0:0       50G
+#          sdd     1:0:0:1       32G
+
+          #sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
+          #sudo mkfs.xfs /dev/sdc1
+          #sudo partprobe /dev/sdc1
+
+#mkdir lmsapp
+#sudo mount /dev/sdc1 /lmsapp
+#ls -lrt
+#df -h /lmsapp
+
+#lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
+
+
+
+#sudo parted /dev/sdd --script mklabel gpt mkpart xfspart xfs 0% 100%
+#sudo mkfs.xfs /dev/sdd1
+#sudo partprobe /dev/sdd1
+
+#sudo mkdir lmsapp01
+#sudo mount /dev/sdd1 /lmsapp01
+
+#ls -lrt
+#df -h /lmsapp
+
+#lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 
       - name: 'Adding Data Disk on Both VMS'
         run: |
